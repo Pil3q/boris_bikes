@@ -7,7 +7,7 @@ class DockingStation
 
   def release_bike
     raise "there are no bikes" if @bikes == []
-    @bikes
+    @bikes[0]
   end
 
   def dock(bike)
