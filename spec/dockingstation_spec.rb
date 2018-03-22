@@ -37,13 +37,13 @@ describe DockingStation do
   it 'returns docked bikes' do
     bike = Bike.new
     subject.dock(bike)
-    expect(subject.bikes).to eq bike
+    expect(subject.bikes).to eq @bikes
   end
 end
 
 describe DockingStation do
   it 'checks if there is a bike in DockingStation' do
-    expect(subject.bikes).to eq nil
+    expect(subject.bikes).to eq []
   end
 end
 
@@ -53,6 +53,7 @@ describe DockingStation do
     expect{ subject.release_bike }.to raise_error 'there are no bikes'
   end
 end
+
 describe DockingStation do
   it 'raises an error when docki a bike to the full dock' do
     bike = Bike.new

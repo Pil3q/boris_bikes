@@ -11,8 +11,7 @@ class DockingStation
   end
 
   def dock(bike)
-    @bikes = bike
-    raise "dock is full" if @bike ==  bike
-    @bike = bike
+    @bikes << bike
+    raise "dock is full" if @bikes.length == 21
   end
 end
