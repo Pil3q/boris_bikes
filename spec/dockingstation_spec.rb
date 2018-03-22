@@ -1,7 +1,15 @@
 require 'dockingstation'
 
+bike = Bike.new
+
 describe DockingStation do
   it { is_expected.to respond_to(:release_bike)  }
+end
+
+describe DockingStation do
+  it 'has a default value' do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+  end
 end
 
 describe DockingStation do
@@ -28,14 +36,12 @@ end
 
 describe DockingStation do
   it 'docks something' do
-    bike = Bike.new
-    DockingStation::DEFAULT_CAPACITY.times { expect(subject.dock(bike)) }
+    subject.capacity.times { expect(subject.dock(bike)) }
   end
 end
 
 describe DockingStation do
   it 'returns docked bikes' do
-    bike = Bike.new
     subject.dock(bike)
     expect(subject.bikes).to eq [bike]
   end
@@ -47,7 +53,6 @@ describe DockingStation do
   end
 end
 
-
 describe DockingStation do
   it 'raises an error when releasing a bike from empty dock' do
     expect{ subject.release_bike }.to raise_error 'there are no bikes'
@@ -56,8 +61,27 @@ end
 
 describe DockingStation do
   it 'raises an error when docking a bike to the full dock' do
-    bike = Bike.new
-    DockingStation::DEFAULT_CAPACITY.times { subject.dock(bike) }
+    subject.capacity.times { subject.dock(bike) }
     expect{subject.dock(bike)}.to raise_error 'dock is full'
   end
+end
+
+describe DockingStation do
+describe 'test with argument' do
+  it 'has a capacity equal to argument, error when exceded' do
+    docking_station = DockingStation.new(100)
+    100.times { docking_station.dock(bike) }
+    expect{ docking_station.dock(bike) }.to raise_error 'dock is full'
+  end
+end
+end
+
+describe DockingStation do
+describe 'test with default' do
+  it 'has a default capacity, error when exceded' do
+    docking_station = DockingStation.new
+    DockingStation::DEFAULT_CAPACITY.times { docking_station.dock(bike) }
+    expect{ docking_station.dock(bike) }.to raise_error 'dock is full'
+  end
+end
 end
