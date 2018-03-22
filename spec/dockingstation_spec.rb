@@ -29,7 +29,7 @@ end
 describe DockingStation do
   it 'docks something' do
     bike = Bike.new
-    expect(subject.dock(bike)).to eq bike
+    20.times { expect(subject.dock(bike)).to eq bike }
   end
 end
 
@@ -47,17 +47,16 @@ describe DockingStation do
   end
 end
 
-# describe DockingStation do
-#   it 'raises error when releasing a bike from empty dock' do
-#     bike = Bike.new
-#     subject.dock(bike)
-#     subject.release_bike
-#     expect(subject.bike).to eq nil
-#   end
-# end
 
 describe DockingStation do
   it 'raises an error when releasing a bike from empty dock' do
     expect{ subject.release_bike }.to raise_error 'there are no bikes'
+  end
+end
+describe DockingStation do
+  it 'raises an error when docki a bike to the full dock' do
+    bike = Bike.new
+    subject.dock(bike)
+    expect{subject.dock(bike)}.to raise_error 'dock is full'
   end
 end
