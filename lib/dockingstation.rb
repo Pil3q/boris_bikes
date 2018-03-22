@@ -20,10 +20,7 @@ class DockingStation
   end
 
   def full?
-    if @bikes.length >= 20
-      true
-    else
-      false
-    end
+    @bikes.length == 20
   end
+
 end
