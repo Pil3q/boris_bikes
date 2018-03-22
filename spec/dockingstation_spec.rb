@@ -29,7 +29,7 @@ end
 describe DockingStation do
   it 'docks something' do
     bike = Bike.new
-    20.times { expect(subject.dock(bike)).to eq bike }
+    20.times { expect(subject.dock(bike)) }
   end
 end
 
@@ -37,7 +37,7 @@ describe DockingStation do
   it 'returns docked bikes' do
     bike = Bike.new
     subject.dock(bike)
-    expect(subject.bikes).to eq @bikes
+    expect(subject.bikes).to eq bike
   end
 end
 
