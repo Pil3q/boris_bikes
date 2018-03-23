@@ -15,12 +15,6 @@ class DockingStation
       @bikes[first_working]
       @bikes.delete_at(first_working)
     end
-    # while  @bikes.status == false
-    #   puts "bike broken"
-    # else
-    # @bikes[0]
-    # @bikes.delete_at(0)
-    # end
   end
 
   def dock(bike)

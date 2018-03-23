@@ -13,3 +13,9 @@ describe Bike do
   expect(subject.working?).to eq false
 end
 end
+
+describe Bike do
+  it 'expect bike to working? or not' do
+    expect(subject.working?).to eq true
+  end
+end
