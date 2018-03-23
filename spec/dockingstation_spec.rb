@@ -1,6 +1,7 @@
 require 'dockingstation'
 
 bike = Bike.new
+bike1 = Bike.new
 
 describe DockingStation do
   it { is_expected.to respond_to(:release_bike)  }
@@ -84,4 +85,21 @@ describe 'test with default' do
     expect{ docking_station.dock(bike) }.to raise_error 'dock is full'
   end
 end
+end
+
+describe DockingStation do
+  it 'keep broken bikes at the dock' do
+    subject.dock(bike)
+    subject.dock(bike1)
+    bike.broken
+    expect(subject.release_bike).to eq bike1
+  end
+end
+
+describe DockingStation do
+  it 'allows user to return either broken or working bike' do
+    bike.broken
+    subject.dock(bike)
+    expect(subject.bikes).to include bike
+  end
 end
